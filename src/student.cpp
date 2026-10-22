@@ -82,6 +82,7 @@ bool enqueue(Queue& q, int nomor) {
     } else {
         q.belakang->next = newNode;
     }
+
     q.belakang = newNode;
     return true;
 }
@@ -98,6 +99,11 @@ bool dequeue(Queue& q, int& nomor) {
     Node* temp = q.depan;
     nomor = temp->data;
     q.depan = q.depan->next;
+
+    if (q.depan == NULL) {
+        q.belakang = NULL;
+    }
+
     delete temp;
     return true;
 }
@@ -108,9 +114,9 @@ bool dequeue(Queue& q, int& nomor) {
 void clear(Queue& q) {
     // TODO: kerjakan di sini
      while (!isEmpty(q)) {
-          int nomor;
-          dequeue(q, nomor);
-     }
+        int nomor;
+        dequeue(q, nomor);
+    }
 }
 
 // =============================================================================
